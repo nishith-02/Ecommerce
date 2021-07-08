@@ -1,20 +1,27 @@
 import React, { useState,useEffect } from 'react';
 import { Link,useHistory } from 'react-router-dom';
 import { useDispatch,useSelector } from 'react-redux';
-import { signIn } from '../actions/userActions';
+import { register } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-const SignIn=(props)=> {
+const RegisterScreen=(props)=> {
   const dispatch=useDispatch()
   const history=useHistory()
   const [email, setEmail] = useState('');
+  const [name, setname] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmpassword, setConfirmPassword] = useState('');
   const redirect=props.location.search?props.location.search.split('=')[1]:'/'
-  const userSignIn=useSelector(state=>state.userSignIn)
-  const {userInfo,loading,error}=userSignIn
+  const userRegister=useSelector(state=>state.userRegister)
+  const {userInfo,loading,error}=userRegister
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(signIn(email,password))
+    if(password!==confirmpassword){
+        alert('Password and confirm password does not match')
+    }
+    else{
+        dispatch(register(name,email,password))
+    }
   };
   useEffect(()=>{
     if(userInfo){
@@ -25,10 +32,20 @@ const SignIn=(props)=> {
     <div>
       <form className="form" onSubmit={submitHandler}>
         <div>
-          <h1>Sign In</h1>
+          <h1>Create Account</h1>
         </div>
         {loading&&<LoadingBox></LoadingBox>}
         {error&&<MessageBox variant="danger">{error}</MessageBox>}
+        <div>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter name"
+            required
+            onChange={(e) => setname(e.target.value)}
+          ></input>
+        </div>
         <div>
           <label htmlFor="email">Email address</label>
           <input
@@ -50,19 +67,29 @@ const SignIn=(props)=> {
           ></input>
         </div>
         <div>
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confimPassword"
+            placeholder="Enter confirm password"
+            required
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          ></input>
+        </div>
+        <div>
           <label />
           <button className="primary" type="submit">
-            Sign In
+            Register
           </button>
         </div>
         <div>
           <label />
           <div>
-            New customer? <Link to={`/register?redirect=${redirect}`}>Create your account</Link>
+            Already have an Account? <Link to={`/signin?redirect=${redirect}`}>Sign-In</Link>
           </div>
         </div>
       </form>
     </div>
   );
 }
-export default SignIn
+export default RegisterScreen
