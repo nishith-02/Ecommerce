@@ -190,7 +190,6 @@ img.small{
 }
 .form label{
   margin:1rem 0;
-  display: block;
 }
 .dropdown {
   display: inline-block;
@@ -213,4 +212,15 @@ img.small{
 }
 .loading{
   display: block !important;
+}
+.checkout-steps>div{
+  border-top: 0.3rem #c0c0c0 solid;
+  color: #c0c0c0;
+  flex:1;
+  padding:1rem;
+  font-weight: bold;
+}
+.checkout-steps>div.active{
+  border-top-color: #ff8800;
+  color:#ff8800;
 }
