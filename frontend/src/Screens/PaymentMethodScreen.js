@@ -30,7 +30,6 @@ const PaymentMethodScreen = (props) => {
               value="PayPal"
               name="paymentMethod"
               required
-              checked
               onChange={(e) => setPaymentMethod(e.target.value)}
             />
             <label htmlFor="paypal">PayPal</label>

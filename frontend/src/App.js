@@ -10,6 +10,7 @@ import RegisterScreen from './Screens/RegisterScreen';
 import ShippingAddress from './Screens/ShippingAdress';
 import PaymentMethodScreen from './Screens/PaymentMethodScreen';
 import PlaceOrderScreen from './Screens/PlaceOrderScreen';
+import OrderScreen from './Screens/OrderScreen';
 function App() {
   const cart=useSelector(state=>state.cart)
   const dispatch=useDispatch()
@@ -41,7 +42,7 @@ function App() {
                 </Link>
                 <ul className="dropdown-content">
                   <li>
-                    <Link to="#logout" onClick={signOutHandler}>
+                    <Link to="/" onClick={signOutHandler}>
                       Sign Out
                     </Link>
                   </li>
@@ -62,6 +63,7 @@ function App() {
           <Route path="/shipping" component={ShippingAddress}></Route>
           <Route path="/payment" component={PaymentMethodScreen}></Route>
           <Route path="/placeOrder" component={PlaceOrderScreen}></Route>
+          <Route path="/order/:id" component={OrderScreen}></Route>
       </main>
       <footer className="row center">All right reserved</footer>
     </div>

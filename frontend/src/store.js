@@ -4,15 +4,14 @@ import { productListReducer } from './reducers/productReducer';
 import {productDetailReducer} from './reducers/productDetailReducer'
 import { cartReducer } from './reducers/cartReducer';
 import { userRegisterReducer, userSignInReducer } from './reducers/userReducer';
-
+import { orderCreateReducer, orderDeatilsReducer } from './reducers/orderReducer';
 const initialState = {
   userSignIn:{
     userInfo:localStorage.getItem('userInfo')?JSON.parse(localStorage.getItem('userInfo')):null
   },
   cart:{
     cartItems:localStorage.getItem('cartItems')?JSON.parse(localStorage.getItem('cartItems')):[],
-    shippingAddress:localStorage.getItem('shippingAddress')?JSON.parse(localStorage.getItem('shippingAddress')):{},
-    paymentMethod:'PaylPal'
+    shippingAddress:localStorage.getItem('shippingAddress')?JSON.parse(localStorage.getItem('shippingAddress')):{fullName:'', address:'', city:'', postalCode:'', country:''}
   }
 };
 const reducer = combineReducers({
@@ -20,7 +19,9 @@ const reducer = combineReducers({
   productDetails:productDetailReducer,
   cart:cartReducer,
   userSignIn:userSignInReducer,
-  userRegister:userRegisterReducer
+  userRegister:userRegisterReducer,
+  orderCreate:orderCreateReducer,
+  orderDetails:orderDeatilsReducer
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
