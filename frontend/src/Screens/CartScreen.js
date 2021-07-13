@@ -76,7 +76,7 @@ const CartScreen = (props) => {
             ))}
           </ul>
         )}
-        <Link to="/"> Go to Shopping</Link>
+        {cartItems.length>0?<Link to="/"> Go to Shopping</Link>:null}
       </div>
       <div className="col-1">
           <div className="card card-body">

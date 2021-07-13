@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CheckOutSteps from "../components/CheckOutSteps";
 import {Link} from 'react-router-dom'
 import { createOrder } from "../actions/orderActions";
-import { ORDER_CREATE_REQUEST } from "../constants/orderConstants";
+import { ORDER_CREATE_REQUEST, ORDER_RESET } from "../constants/orderConstants";
 import LoadingBox from '../components/LoadingBox'
 import MessageBox from '../components/MessageBox'
 const PlaceOrderScreen = (props) => {
@@ -25,6 +25,7 @@ const PlaceOrderScreen = (props) => {
       dispatch(createOrder({...cart,orderItems:cart.cartItems}))
   }
   useEffect(()=>{
+    dispatch({type:ORDER_RESET})
     if(success){
       props.history.push(`/order/${order._id}`)
       dispatch({type:ORDER_CREATE_REQUEST})
