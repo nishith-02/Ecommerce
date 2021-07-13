@@ -24,7 +24,7 @@ app.use('/api/order',orderRouter)
 
 
 app.get('/api/config/paypal',(req,res)=>{
-    res.send(process.env.PAYPAL_CLIENT_ID||'sb')
+    res.send(process.env.PAYPAL_CLIENT_ID)
 })
 app.use((err,req,res,next)=>{
     res.status(500).send({message:err.message})
