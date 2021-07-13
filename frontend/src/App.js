@@ -11,6 +11,9 @@ import ShippingAddress from './Screens/ShippingAdress';
 import PaymentMethodScreen from './Screens/PaymentMethodScreen';
 import PlaceOrderScreen from './Screens/PlaceOrderScreen';
 import OrderScreen from './Screens/OrderScreen';
+import OrderHistoryScreen from './Screens/OrderHistoryScreen';
+import ProfileScreen from './Screens/ProfileScreen';
+import PrivateRoute from './components/PrivateRoute';
 function App() {
   const cart=useSelector(state=>state.cart)
   const dispatch=useDispatch()
@@ -26,7 +29,7 @@ function App() {
       <header className="row">
         <div>
           <Link className="brand" to="/">
-            amazona
+            E-Commerce
           </Link>
         </div>
         <div>
@@ -42,9 +45,15 @@ function App() {
                 </Link>
                 <ul className="dropdown-content">
                   <li>
-                    <Link to="/" onClick={signOutHandler}>
+                    <Link to="/profile">User Profile</Link>
+                  </li>
+                  <li>
+                    <Link to="/orderhistory">Order History</Link>
+                  </li>
+                  <li>
+                    <a href="/" onClick={signOutHandler}>
                       Sign Out
-                    </Link>
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -64,6 +73,8 @@ function App() {
           <Route path="/payment" component={PaymentMethodScreen}></Route>
           <Route path="/placeOrder" component={PlaceOrderScreen}></Route>
           <Route path="/order/:id" component={OrderScreen}></Route>
+          <Route path="/orderhistory" component={OrderHistoryScreen}></Route>
+          <PrivateRoute path="/profile" component={ProfileScreen}></PrivateRoute>
       </main>
       <footer className="row center">All right reserved</footer>
     </div>

@@ -8,7 +8,7 @@ const PaymentMethodScreen = (props) => {
     if(!shippingAddress.address){
         props.history.push('/shipping')
     }
-    const[paymentMethod,setPaymentMethod]=useState('PayPal')
+    const[paymentMethod,setPaymentMethod]=useState('')
     const dispath=useDispatch()
     const submitHandler=(e)=>{
         e.preventDefault()
@@ -49,7 +49,7 @@ const PaymentMethodScreen = (props) => {
           </div>
         </div>
         <div>
-            <button className="primary" type="submit">Continue</button>
+            <button className="primary" type="submit" disabled={paymentMethod===''}>Continue</button>
         </div>
       </form>
     </div>

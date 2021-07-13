@@ -76,6 +76,7 @@ const CartScreen = (props) => {
             ))}
           </ul>
         )}
+        <Link to="/"> Go to Shopping</Link>
       </div>
       <div className="col-1">
           <div className="card card-body">
